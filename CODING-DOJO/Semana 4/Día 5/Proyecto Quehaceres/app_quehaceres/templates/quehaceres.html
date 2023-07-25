@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ES">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Vista renderizada con Flask </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename = '/css/index.css') }}">
+    </head>
+    <body>
+        <h1>
+            Bienvenido de vuelta {{session['nombre']}} {{session['apellido']}}
+            Has visitado esta página {{session['contador']}} veces!
+        </h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th> Descripcion </th>
+                    <th> Estatus </th>
+                    <th> Usuario </th>
+                    <th> Acciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in quehaceres: %}
+                <tr class="quehacer"> 
+                    <td> {{item.descripcion}} </td>
+                    <td> {{item.estatus}} </td>
+                    <td> {{item.usuario.nombre}} {{item.usuario.apellido}} </td>
+                    <td>
+                        <form method="GET" action="/formulario/quehacer/{{item.id}}">
+                           <button type="submit"> Actualizar </button> 
+                        </form>
+                        <form method="POST" action="/eliminar/quehacer/{{item.id}}">
+                            <button type="submit"> Eliminar </button>
+                        </form>
+                    </td>
+                </tr>   
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <form method="GET" action="/formulario/quehacer">
+            <button type="submit">
+                Agregar nuevo quehacer
+            </button>
+        </form>
+        <p> {{usuario_actual.nombre}} {{usuario_actual.apellido}} </p>
+        <p> 
+        {% if usuario_actual.quehaceres | length == 0: %} 
+            ¡Aún no tienes quehaceres!
+        {% endif %}
+        </p>
+
+        <ul>
+            {% for item in usuario_actual.quehaceres: %}
+            <li>
+                {{item.descripcion}} - {{item.estatus}}
+            </li>
+            {% endfor %}
+        </ul>
+        <script src="{{ url_for('static', filename = '/js/index.js') }}"> </script>
+    </body>
+</html>

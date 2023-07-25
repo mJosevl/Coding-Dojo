@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Cliente quehaceres </title>
+    </head>
+    <body>
+        <h1>
+            Bienvenid@ al cliente de quehaceres
+        </h1>
+        <div class="cargar">
+            <button class="cargarQuehaceres" onclick="obtenerQuehaceres(event)">
+                Cargar todos los quehaceres
+            </button>
+        </div>
+        <div class="resultados">
+            <ul class="quehaceres"></ul>
+        </div>
+        <form onsubmit="agregarQuehacer(event)">
+            <div>
+                <label for="descripcion">
+                    Descripcion
+                </label>
+                <input type="text" id="descripcion" name="descripcion">
+            </div>
+            <div>
+                <label for="id_usuario">
+                    Id usuario:
+                </label>
+                <input id="id_usuario" type="number" name="id_usuario">
+            </div>
+            <div>
+                <label for="estatus">
+                    Estatus
+                </label>
+                <select id="estatus" name="estatus">
+                    <option value="completo"> Completo </option>
+                    <option value="en_proceso"> En proceso </option>
+                    <option value="pendiente"> Pendiente </option>
+                    <option value="cancelado"> Cancelado </option>
+                </select>
+            </div>
+            <button type="submit">
+                Agregar nuevo quehacer
+            </button>
+        </form>
+        <script src="./js/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ES">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Formulario para editar un quehacer </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename = '/css/index.css') }}">
+    </head>
+    <body>
+        <h1>
+            Estas conectado como: {{session['nombre']}} {{session['apellido']}}
+        </h1>
+        <h1>
+            Actualizar quehacer
+        </h1>
+        <form method="POST" action="/actualizar/quehacer/{{quehacer_actual.id}}">
+            <div>
+                <label for="descripcion">
+                    Descripcion
+                </label>
+                <input type="text" id="descripcion" name="descripcion" value="{{quehacer_actual.descripcion}}">
+            </div>
+            <div>
+                <label for="estatus">
+                    Estatus
+                </label>
+                <select id="estatus" name="estatus">
+                    <option value="completo" {% if quehacer_actual.estatus == "completo": %} selected {% endif %}> Completo </option>
+                    <option value="en_proceso" {% if quehacer_actual.estatus == "en_proceso": %} selected {% endif %}> En proceso </option>
+                    <option value="pendiente" {% if quehacer_actual.estatus == "pendiente": %} selected {% endif %}> Pendiente </option>
+                    <option value="cancelado" {% if quehacer_actual.estatus == "cancelado": %} selected {% endif %}> Cancelado </option>
+                </select>
+            </div>
+            <button type="submit">
+                Actualizar quehacer
+            </button>
+        </form>
+        <form action="/logout" method="POST">
+            <button type="submit">
+                Logout
+            </button>
+        </form>
+    </body>
+</html>

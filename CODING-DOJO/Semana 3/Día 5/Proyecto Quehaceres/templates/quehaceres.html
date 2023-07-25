@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ES">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Vista renderizada con Flask </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename = '/css/index.css') }}">
+    </head>
+    <body>
+        <h1>
+            Bienvenido de vuelta {{session['nombre']}} {{session['apellido']}}
+            Has visitado esta página {{session['contador']}} veces!
+        </h1>
+        <ul>
+            {% for item in quehaceres: %}
+            <li class="quehacer"> 
+                {{item.descripcion}} - {{item.estatus}}
+            </li>   
+            {% endfor %}
+        </ul>
+        <form method="GET" action="/formulario/quehacer">
+            <button type="submit">
+                Agregar nuevo quehacer
+            </button>
+        </form>
+        <script src="{{ url_for('static', filename = '/js/index.js') }}"> </script>
+    </body>
+</html>
