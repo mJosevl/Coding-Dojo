@@ -1,0 +1,1 @@
+Este repositorio contiene los proyectos realizados durante el programa de Full Stack Python en Coding Dojo. Durante el curso, aprendimos a construir aplicaciones web completas utilizando Python, Flask, HTML, CSS, y otras tecnologías del stack.
